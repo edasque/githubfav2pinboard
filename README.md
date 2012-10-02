@@ -5,7 +5,15 @@ I like starring projects in github but I wanted to have those bookmarks in pb wh
 
 So I wrote this, it's likely it'll need some elbow grease to get it working for everyone. I am not pretending it's great, super well written or would work for anyone else but me, so beware. There isn't much exception handling but it can be added easily.
 
-You will need a recent version of node.js installed as well as the xml2json module if I recall correctly.
+You will need a recent version of node.js installed as well as the xml2json module if I recall correctly. This retrieves up to 100 starred projects.
+
+## TO-DO
+
+* paginate to retrieve more than 100 starred project
+* use the node-github library which might eliminate the requirement for generating a token
+* add a tag for 'watching' if user is watching a project. This might require one additional github API call per project
+* surface replace as a configurable option
+
 
 How-to
 ------
@@ -36,33 +44,4 @@ node gitfav2pinboard.js
 Nota Bene
 ---------
 
-I have included a modified copy of [node-pinboard](https://github.com/frozzare/node-pinboard) in this app. The better way to do this would have been to fork it but I don't know Git & GitHub well enough to do that in a good way yet. Room for contributors to do the right thing here. Also, 'npm install pinboard' wasn't working for me on Mac OS X 10.8.2. 
-
-I have tried to include a modified copy of frozzare/node-pinboard in this app. The better way to do this would have been to fork it but I don't know git & github well enough to do that in a good way yet. Room for contributors to do the right thing here. Also, 'npm install pinboard' wasn't working for me on Mac OS X 10.8.2. * seems I didn't do that well so you'll need to git clone that node-pinboard repo and edit the following in pinboard.js:*
-
-        callback: function (item) {
-            if (item.err) {
-                throw item.err;
-            } else if (item.res.statusCode == 200) {
-
-                /*
-                try 
-                {
-                    var data = this.parseJSON ? parser.toJson(item.body, {
-                        object: true
-                    }) : item.format === 'json' ? eval('(' + item.body + ')') : item.body;
-                }
-                catch(e)
-                {
-                    console.log(e.message+" Exception: pinboard is weird in that for the add operation it tells us things went well in JSON and things went bad in XML and node-pingboard chokes on that");
-                }
-                */
-                item.callback.call(this, item.body);
-                this.parseJSON = false;
-            }
-
-I would let them know but they don't have an issue section on [node-pinboard]
-
-The reasons why it's modified is that it seems that pinboard's API is weird in that for the add operation it will respond in JSON when things went well but in XML when things fail (for example when you run the app multiple times and it tries to overwrite the bookmarks but and replace is set to no).
-
-I set replace to 'no' in my code because I want to be able to edit the pinboard bookmarks without them being overwriten. Collaborators, feel free to submit code that will check if the bookmark already exists and not attempt to overwrite.
+I have included [node-pinboard](https://github.com/frozzare/node-pinboard) in this app because 'npm install pinboard' wasn't working for me on Mac OS X 10.8.2.
