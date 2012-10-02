@@ -43,7 +43,7 @@ var myGitHUBfavs = "https://api.github.com/user/watched?per_page=100&access_toke
 
 
                     options.description = favs[index].name;
-                    options.url =  favs[index].url;
+                    options.url =  favs[index].html_url;
                     options.extended = favs[index].description;
 
                     // the project language, if specified, will be used for a tag
