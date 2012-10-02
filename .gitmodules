@@ -1,0 +1,3 @@
+[submodule "node-pinboard"]
+	path = node-pinboard
+	url = https://edasque@github.com/frozzare/node-pinboard
