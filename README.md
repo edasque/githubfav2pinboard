@@ -1,5 +1,5 @@
-gitfav2pinboard
-===============
+githubfav2pinboard
+==================
 
 I like starring projects in github but I wanted to have those bookmarks in pb which allows me to put more context around my watching of those projects with tags & the like.
 
@@ -31,9 +31,34 @@ You can check that this process went well by hitting: https://api.github.com/use
 
 	node gitfav2pinboard.js
 
-### Nota Bene
+Nota Bene
+---------
 
-I have included a modified copy of [node-pinboard] in this app. The better way to do this would have been to fork it but I don't know git & github well enough to do that in a good way yet. Room for contributors to do the right thing here. Also, 'npm install pinboard' wasn't working for me on Mac OS X 10.8.2. 
+
+I have tried to include a modified copy of frozzare/node-pinboard in this app. The better way to do this would have been to fork it but I don't know git & github well enough to do that in a good way yet. Room for contributors to do the right thing here. Also, 'npm install pinboard' wasn't working for me on Mac OS X 10.8.2. * seems I didn't do that well so you'll need to git clone that node-pinboard repo and edit the following in pinboard.js:*
+
+        callback: function (item) {
+            if (item.err) {
+                throw item.err;
+            } else if (item.res.statusCode == 200) {
+
+                /*
+                try 
+                {
+                    var data = this.parseJSON ? parser.toJson(item.body, {
+                        object: true
+                    }) : item.format === 'json' ? eval('(' + item.body + ')') : item.body;
+                }
+                catch(e)
+                {
+                    console.log(e.message+" Exception: pinboard is weird in that for the add operation it tells us things went well in JSON and things went bad in XML and node-pingboard chokes on that");
+                }
+                */
+                item.callback.call(this, item.body);
+                this.parseJSON = false;
+            }
+
+I would let them know but they don't have an issue section on [node-pinboard]
 
 The reasons why it's modified is that it seems that pinboard's API is weird in that for the add operation it will respond in JSON when things went well but in XML when things fail (for example when you run the app multiple times and it tries to overwrite the bookmarks but and replace is set to no).
 
