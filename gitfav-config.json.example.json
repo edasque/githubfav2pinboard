@@ -1,5 +1,7 @@
 {   
 	"pb_username": "your_pinboard_username",
     "pb_password": "your_pinboard_password",
-    "github_token": "your_github_OAuth_token"
+    "github_token": "your_github_OAuth_token",
+    "github_username" : "your_github_username"
+
 }

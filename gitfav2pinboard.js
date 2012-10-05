@@ -29,7 +29,7 @@ pinboard.config({
     format: 'json' // or 'xml', default is 'json'. 
 });
 
-var myGitHUBfavs = "https://api.github.com/user/watched?per_page=100&access_token="+gitfav_config.github_token
+var myGitHUBfavs = "https://api.github.com/users/"+gitfav_config.github_username+"/starred?per_page=100"
 
     request(myGitHUBfavs, function (error, response, body) {
       if (!error && response.statusCode == 200) { 

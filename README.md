@@ -18,22 +18,10 @@ You will need a recent version of node.js installed as well as the xml2json modu
 How-to
 ------
 
-### Getting an OAuth token for GitHub
-
-OAuth is easy to implement for web applications but GitHub provides a good way to add a non web app to your account. It's done with a curl, command-line:
-
-```bash
-curl https://api.github.com/authorizations --user "myuser" --data '{"scopes":["user"],"note":"GitHub Stars to Bookmarks"}'
-```
-
-which will ask you for your password and return a JSON document which will contain your token. People feel free to contribute additional code which will do that in node.js, it's not very difficult.
-
-You can check that this process went well by hitting: https://api.github.com/user/watched?access_token=YOUR_TOKEN_HERE
-
 ### Setting up your configuration file
 
 1. copy gitfav-config.json.example to gitfav-config.json
-2. edit gitfav-config.json to set your pinboard username & login as well as your github OAuth token
+2. edit gitfav-config.json to set your pinboard username & login as well as your github username
 
 ### Running the application
 
