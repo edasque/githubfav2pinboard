@@ -17,7 +17,7 @@ catch(e) {
 console.log("Configuration parameters:")
 console.dir(gitfav_config);
 
-if (!((gitfav_config.pb_username)&&(gitfav_config.pb_password)&&(gitfav_config.github_token)))
+if (!((gitfav_config.pb_username)&&(gitfav_config.pb_password)&&(gitfav_config.github_username)))
 {
   console.log("This application requires the gitfav-config.json config file that defines pb_username, pb_password & github_token")
   process.reallyExit();

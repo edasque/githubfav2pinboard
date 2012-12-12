@@ -19,7 +19,6 @@ How-to
 ------
 
 ### Setting up your configuration file
-
 1. copy gitfav-config.json.example to gitfav-config.json
 2. edit gitfav-config.json to set your pinboard username & login as well as your github username
 
