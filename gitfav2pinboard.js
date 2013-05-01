@@ -1,5 +1,4 @@
-
-var pinboard = require('node-pinboard');
+var pinboard = require('pinboard');
 var request = require('request');
 
 var fs = require('fs');
@@ -30,8 +29,12 @@ pinboard.config({
 });
 
 var myGitHUBfavs = "https://api.github.com/users/"+gitfav_config.github_username+"/starred?per_page=100"
+var params = { uri:myGitHUBfavs,  headers: {
+    'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13'
+  }};
 
-    request(myGitHUBfavs, function (error, response, body) {
+    request(params, function (error, response, body) {
+
       if (!error && response.statusCode == 200) { 
         var favs = JSON.parse(body);
 
